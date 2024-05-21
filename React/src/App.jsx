@@ -1,34 +1,35 @@
-import { useState } from "react"
-import "./styles.css"
-import { NewPlayerForm } from "./NewPlayerForm"
+import { useState } from "react";
+import "./styles.css";
+import { NewPlayerForm } from "./NewPlayerForm";
+import { PlayerCard } from "./PlayerCard";
 
 export default function App() {
-  const [todos, setTodos] = useState([])
+  const [players, setPlayers] = useState([]);
 
-  function addPlayer(title) {
-    setTodos((currentTodos) => {
+  function addPlayer(title, photo, position, team) {
+    setPlayers(currentPlayers => {
       return [
-        ...currentTodos, 
-        { id: crypto.randomUUID(), title, completed: false }
-      ]
-    })
+        ...currentPlayers, 
+        { id: crypto.randomUUID(), title, photo, position, team, completed: false }
+      ];
+    });
   }
 
-  function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, completed }
+  function togglePlayer(id, completed) {
+    setPlayers(currentPlayers => {
+      return currentPlayers.map(player => {
+        if (player.id === id) {
+          return { ...player, completed };
         }
-        return todo
-      })
-    })
+        return player;
+      });
+    });
   }
 
-  function deleteTodo(id) {
-    setTodos(currentTodos => {
-      return currentTodos.filter(todo => todo.id !== id)
-    })
+  function deletePlayer(id) {
+    setPlayers(currentPlayers => {
+      return currentPlayers.filter(player => player.id !== id);
+    });
   }
 
   return (
@@ -36,21 +37,16 @@ export default function App() {
       <NewPlayerForm onSubmit={addPlayer} />
       <h1 className="header">Players</h1>
       <ul className="list">
-        {todos.length === 0 && "No Players"}
-        {todos.map(todo => (
-          <li key={todo.id}>
-            <label>
-              <input 
-                type="checkbox" 
-                checked={todo.completed} 
-                onChange={e => toggleTodo(todo.id, e.target.checked)} 
-              />
-              {todo.title}
-            </label>
-            <button onClick={() => deleteTodo(todo.id)} className="btn btn-danger">Delete</button>
-          </li>
+        {players.length === 0 && "No Players"}
+        {players.map(player => (
+          <PlayerCard 
+            key={player.id} 
+            player={player} 
+            onToggle={togglePlayer} 
+            onDelete={deletePlayer} 
+          />
         ))}
       </ul>
     </>
-  )
+  );
 }
