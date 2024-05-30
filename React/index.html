@@ -21,11 +21,13 @@
       margin: 0;
       min-height: 100vh;
       font-family: "Open Sans";
-      background: #ae07ef;
+      background: url('https://wallpapers.com/images/hd/lebron-james-basketball-jersey-23-bmdglwh69rqk6o3h.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
     .cards-wrapper {
@@ -39,64 +41,78 @@
       width: max-content;
     }
 
-    .card-grid-space {
-      perspective: 1000px;
-    }
-
     .card {
       font-family: "Heebo";
-      --bg-filter-opacity: 0.5;
-      background-image: linear-gradient(
-          rgba(0, 0, 0, var(--bg-filter-opacity)),
-          rgba(0, 0, 0, var(--bg-filter-opacity))
-        ),
-        var(--bg-img);
       height: 15em;
       width: 12em;
       font-size: 1.2em;
       color: white;
       border-radius: 1em;
-      padding: 1em;
       display: flex;
       align-items: flex-end;
       background-size: cover;
       background-position: center;
       box-shadow: 0 0 5em -1em black;
-      transition: all, var(--transition-time);
+      transition: transform var(--transition-time);
       position: relative;
       overflow: hidden;
       border: 10px solid #ccc;
       text-decoration: none;
-      transform-style: preserve-3d;
-      transform: rotateY(0);
-      transition: transform 0.6s;
+      perspective: 1000px;
     }
 
-    .card:hover {
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform var(--transition-time);
+      transform-style: preserve-3d;
+    }
+
+    .card:hover .card-inner {
       transform: rotateY(180deg);
     }
 
-    .card .front, .card .back {
+    .card-front, .card-back {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
+      border-radius: 1em;
+      padding: 1em;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
     }
 
-    .card .back {
-      background: var(--color);
-      color: white;
+    .card-front {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      border-radius: 1em;
+    }
+
+    .card-back {
+      background-color: var(--color);
       transform: rotateY(180deg);
-      padding: 1em;
+      justify-content: center;
+      align-items: center;
+      color: white;
     }
 
     .card h1 {
       margin: 0;
       font-size: 1.2em;
       line-height: 1.2em;
+      z-index: 1; /* Ensure text is above overlay */
     }
 
     .card p {
@@ -104,10 +120,12 @@
       font-family: "Open Sans";
       margin-top: 0.5em;
       line-height: 1.2em;
+      z-index: 1; /* Ensure text is above overlay */
     }
 
     .card .tags {
       display: flex;
+      z-index: 1; /* Ensure tags are above overlay */
     }
 
     .card .tags .tag {
@@ -120,11 +138,6 @@
       transition: all, var(--transition-time);
     }
 
-    .card:hover .tags .tag {
-      background: var(--color);
-      color: white;
-    }
-
     .card .date {
       position: absolute;
       top: 0;
@@ -133,6 +146,13 @@
       padding: 1em;
       line-height: 1em;
       opacity: 0.8;
+      z-index: 1; /* Ensure date is above overlay */
+    }
+
+    .card-grid-space .num {
+      font-size: 3em;
+      margin-bottom: 1.2rem;
+      margin-left: 1rem;
     }
 
     .info {
@@ -194,8 +214,8 @@
 </head>
 <body>
   <section class="info">
-    <img src="https://codetheweb.blog/assets/img/icon2.png">
-    <h1>NBA Draft Analyzer &mdash; <a href="https://codetheweb.blog/" target="_blank">Aggie Sports Analytics</a></h1>
+    <img src="/src/images/nba2k25.webp">
+    <h1 style="color: white;"> NBA Draft Analyzer &mdash; <a href="https://codetheweb.blog/" target="_blank">Aggie Sports Analytics</a></h1>
   </section>
   <section class="cards-wrapper" id="card-container">
     <!-- Cards will be generated here by JavaScript -->
@@ -253,9 +273,10 @@
     function createPlayerCard(player) {
       return `
         <div class="card-grid-space">
-          <div class="card" style="--bg-img: url(${player.imgUrl})">
-            <div class="front">
-              <div>
+          <div class="card" style="background-image: url('${player.imgUrl}')">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="card-overlay"></div>
                 <h1>${player.name}</h1>
                 <p>Projected Team: ${player.team}</p>
                 <p>${player.description}</p>
@@ -264,16 +285,22 @@
                   <div class="tag">${player.position}</div>
                 </div>
               </div>
-            </div>
-            <div class="back">
-              <h1>${player.name}</h1>
-              <p>Additional Information</p>
-              <a href="${player.link}">Read more</a>
+              <div class="card-back">
+                <h1>${player.name}</h1>
+                <p>27.5 PPG</p>
+                <p>8.3 APG</p>
+                <p>7.8 RPG</p>
+                <p>1.2 BPG</p>
+                <p>1.5 SPG</p>
+                <a href="${player.link}" target="_blank">Read more</a>
+              </div>
             </div>
           </div>
         </div>
       `;
     }
+
+
 
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.querySelector('#card-container');
@@ -290,3 +317,4 @@
   </script>
 </body>
 </html>
+
