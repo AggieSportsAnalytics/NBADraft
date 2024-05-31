@@ -64,7 +64,7 @@
     /* Highlighted team name */
     .card .team {
       font-weight: bold;
-      color: #ffffff; /* Dark gray color for a professional look */
+      color: rgb(255, 255, 255); /* Dark gray color for a professional look */
     }
 
     /* Highlighted position */
@@ -186,6 +186,181 @@
       font-weight: normal;
     }
 
+    .full-height{
+  min-height: 100vh;
+}
+
+  [type="checkbox"]:checked,
+  [type="checkbox"]:not(:checked){
+    position: absolute;
+    left: -9999px;
+  }
+  .modal-btn:checked + label,
+  .modal-btn:not(:checked) + label{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 2;
+    height: 50px;
+    transition: all 200ms linear;
+    border-radius: 4px;
+    width: 240px;
+    letter-spacing: 1px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    text-align: center;
+      -ms-flex-item-align: center;
+      align-self: center;
+    border: none;
+    cursor: pointer;
+    
+    color: #e7e5df;
+    box-shadow: 0 12px 35px 0 rgba(0, 0, 0, 0.25);
+  }
+  .modal-btn:not(:checked) + label:hover{
+    background-color: #ffeba7;
+    color: #102770;
+  }
+  .modal-btn:checked + label .uil,
+  .modal-btn:not(:checked) + label .uil{
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  .modal-btn:checked + label:after,
+  .modal-btn:not(:checked) + label:after{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 110;
+    width: 40px;
+    border-radius: 3px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    background-color: #ffeba7;
+    color: #102770;
+    font-family: 'unicons';
+    content: '\eac6'; 
+    box-shadow: 0 12px 25px 0 rgba(16,39,112,.25);
+    transition: all 200ms linear;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+  }
+  .modal-btn:checked + label:hover:after,
+  .modal-btn:not(:checked) + label:hover:after{
+    background-color: #102770;
+    color: #ffeba7;
+  }
+  .modal-btn:checked + label:after{
+    transition: opacity 300ms 300ms ease, transform 300ms 300ms ease, background-color 250ms linear, color 250ms linear;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .modal{
+    position: fixed;
+    display: block;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    overflow-x: hidden;
+    background-color: rgba(31,32,41,.75);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 250ms 700ms ease;
+  }
+  .modal-btn:checked ~ .modal{
+    pointer-events: auto;
+    opacity: 1;
+    transition: all 300ms ease-in-out;
+  }
+  .modal-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    background-color: #fff;
+      -ms-flex-item-align: center;
+      align-self: center;
+      box-shadow: 0 12px 25px 0 rgba(199,175,189,.25);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+  }
+  .modal-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .modal-wrap p {
+    padding: 20px 30px 0 30px;
+  }
+  .modal-btn:checked ~ .modal .modal-wrap{
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 250ms 500ms ease, transform 350ms 500ms ease;
+  }
+
+
+  .logo {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    display: block;
+    z-index: 1000;
+    transition: all 250ms linear;
+  }
+  .logo img {
+    height: 26px;
+    width: auto;
+    display: block;
+      filter: brightness(10%);
+    transition: filter 250ms 700ms linear;
+  }
+  .modal-btn:checked ~ .logo img {
+      filter: brightness(100%);
+    transition: all 250ms linear;
+  }
+
+
+@media screen and (max-width: 500px) {
+	.modal-wrap {
+		width: calc(100% - 40px);
+		padding-bottom: 15px;
+	}
+	.modal-wrap p {
+	  padding: 15px 20px 0 20px;
+	}
+}
+
     /* MEDIA QUERIES */
     @media screen and (max-width: 1285px) {
       .cards-wrapper {
@@ -229,7 +404,19 @@
 <body>
   <section class="info">
     <img src="/src/images/nba2k25.webp">
-    <h1 style="color: white;"> NBA Draft Analyzer &mdash; <a href="https://codetheweb.blog/" target="_blank">Aggie Sports Analytics</a></h1>
+    <div class="section full-height">
+      <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+      <label for="modal-btn">NBA Draft Analyzer<i class="uil uil-expand-arrows"></i></label> 		
+      <div class="modal">		
+        <div class="modal-wrap">	
+      <img src="https://img1.wsimg.com/isteam/ip/1fd0481b-3bb2-4479-8160-e154d0bde0d7/NBA%2075%20Phase%20VII%20(Post).jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1209,h:1868" alt="">	
+          <p>Created by UC Davis Undergraduates Raquib, Kavin, Siraj and Ruhi. This project is aimed to to be your number draft agent to help you make the right draft decisions. Through AI and Machine Learning, We created a draft model based on player attributes and specific team needs to show how the draft will play out. </p>	          		
+        </div>			          		
+      </div>	
+  <a href="https://front.codes/" class="logo" target="_blank">
+    <img src="" alt="">
+  </a>	
+</div>
   </section>
   <section class="cards-wrapper" id="card-container">
     <!-- Cards will be generated here by JavaScript -->
@@ -317,6 +504,9 @@
     };
 
     const getPickNumber = (pickCounter) => {
+      if(pickCounter === 11 || pickCounter === 12 ||pickCounter === 13){
+        return `${pickCounter}th pick`;
+      }
       const lastDigit = pickCounter % 10;
       const suffix = lastDigit === 1 ? "st" : lastDigit === 2 ? "nd" : lastDigit === 3 ? "rd" : "th";
       return `${pickCounter}${suffix} pick`;
@@ -329,8 +519,10 @@
         <div class="card-inner">
           <div class="card-front" style="background-image: url('${imageURL}');">
             <h1>${player}</h1>
-            <div class="date">${pickCounter}</div>
-            <div class="team">${team}</div>
+            <div class="date">${getPickNumber(pickCounter)}</div>
+            <div class="tags">
+              <div class="tags">${team}</div>
+            </div>
             <div class="tags">
               <div class="tag">${position}</div>
           </div>
