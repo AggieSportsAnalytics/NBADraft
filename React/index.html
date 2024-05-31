@@ -231,45 +231,133 @@
         imgUrl: "https://lalweb.blob.core.windows.net/public/lakers/product-marketing/web/player-page/2023-2024/2324_PlayerImage_James_1920x2304.jpg",
         link: "https://codetheweb.blog/2017/10/06/html-syntax/"
       },
-      durant: {
-        name: "Kevin Durant",
-        team: "Suns",
-        description: "Elite Scorer and Defender",
-        pick: "2nd Pick",
-        position: "SF/PF",
-        imgUrl: "https://static.foxnews.com/foxnews.com/content/uploads/2023/03/GettyImages-1247603462-copy.jpg",
-        link: "https://codetheweb.blog/2017/10/09/basic-types-of-html-tags/"
-      },
-      curry: {
-        name: "Stephen Curry",
-        team: "Warriors",
-        description: "Best Shooter in the League",
-        pick: "3rd Pick",
-        position: "PG",
-        imgUrl: "https://hips.hearstapps.com/hmg-prod/images/stephen-curry-gettyimages-1398745379.jpg",
-        link: "https://codetheweb.blog/2017/10/14/links-images-about-file-paths/"
-      },
-      doncic: {
-        name: "Luka Doncic",
-        team: "Mavericks",
-        description: "Late Game Killer",
-        pick: "4th Pick",
-        position: "PG",
-        imgUrl: "https://www.northerniowan.com/wp-content/uploads/2024/04/lukacmyk.jpg",
-        link: "https://codetheweb.blog/2017/10/14/links-images-about-file-paths/"
-      },
-      edwards: {
-        name: "Anthony Edwards",
-        team: "Timberwolves",
-        description: "Athletic Threat",
-        pick: "5th Pick",
-        position: "SG",
-        imgUrl: "https://s.yimg.com/ny/api/res/1.2/8.SGabkGBaq5zlsTuKoyag--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-uploaded-images/2023-11/286a7a70-83ff-11ee-bfe5-7dbcb2167ea7",
-        link: "https://codetheweb.blog/2017/10/14/links-images-about-file-paths/"
-      }
-      // Add more players as needed
+      // Existing players...
     };
+  
+    const csvData = `
+  Atlanta Hawks,Zaccharie Risacher
+  Washington Wizards,Alex Sarr
+  Houston Rockets,Matas Buzelis
+  San Antonio Spurs,Reed Sheppard
+  Detroit Pistons,Dalton Knecht
+  Charlotte Hornets,Stephon Castle
+  Portland Trail Blazers,Donovan Clingan
+  San Antonio Spurs,Robert Dillingham
+  Memphis Grizzlies,Nikola Topic
+  Utah Jazz,Devin Carter
+  Chicago Bulls,Jared McCain
+  Oklahoma City Thunder,Cody Williams
+  Sacramento Kings,Ron Holland
+  Portland Trail Blazers,Tidjane Salaun
+  Miami Heat,Zach Edey
+  Philadelphia 76ers,Isaiah Collier
+  Los Angeles Lakers,Tristan Da Silva
+  Orlando Magic,JaKobe Walter
+  Toronto Raptors,Carlton Carrington
+  Cleveland Cavaliers,Johnny Furphy
+  New Orleans Pelicans,Kyle Filipowski
+  Phoenix Suns,Kyshawn George
+  Milwaukee Bucks,Bobi Klintman
+  New York Knicks,Baylor Scheierman
+  New York Knicks,Tyler Kolek
+  Washington Wizards,Juan Nunez
+  Minnesota Timberwolves,Justin Edwards
+  Denver Nuggets,Ajay Mitchell
+  Utah Jazz,Terrence Shannon
+  Boston Celtics,Yves Missi
+  Toronto Raptors,Tyler Smith
+  Utah Jazz,Jamal Shead
+  Milwaukee Bucks,Kel'el Ware
+  Portland Trail Blazers,KJ Simpson
+  San Antonio Spurs,Bronny James
+  Indiana Pacers,Kevin McCullar
+  Minnesota Timberwolves,Trey Alexander
+  New York Knicks,Tristen Newton
+  Memphis Grizzlies,Ryan Dunn
+  Portland Trail Blazers,Jaylon Tyson
+  Philadelphia 76ers,Mark Sears
+  Charlotte Hornets,Cameron Christie
+  Miami Heat,Adem Bona
+  Sacramento Kings,Pacome Dadiet
+  Houston Rockets,Alex Karaban
+  Los Angeles Clippers,Reece Beekman
+  Orlando Magic,Nikola Djurisic
+  San Antonio Spurs,Ulrich Chomche
+  Indiana Pacers,Harrison Ingram
+  Indiana Pacers,Jonathan Mogbo
+  Washington Wizards,Payton Sandfort
+  Golden State Warriors,Dillon Jones
+  Detroit Pistons,AJ Johnson
+  Boston Celtics,Judah Mintz
+  Los Angeles Lakers,Ilias Kamardine
+  Denver Nuggets,Pelle Larsson
+  Memphis Grizzlies,Melvin Ajinca
+  Dallas Mavericks,Izan Almansa
+  `;
+  
+    // Function to create a new player object
+    function createNewPlayer(name, team, pick) {
+    if(pick === 1 || pick === 21 || pick === 31 || pick === 41 || pick === 51){
+      return {
+        name: name,
+        team: team,
+        description: "New Draftee",
+        pick: `${pick}st Pick`,
+        position: "Unknown",
+        imgUrl: "https://via.placeholder.com/150",
+        link: "#"
+      };
+    }
+    else if(pick === 2 || pick === 22 || pick === 32 || pick === 42 || pick === 52){
+      return {
+        name: name,
+        team: team,
+        description: "New Draftee",
+        pick: `${pick}nd Pick`,
+        position: "Unknown",
+        imgUrl: "https://via.placeholder.com/150",
+        link: "#"
+      };
+    }
 
+    else if(pick === 3 || pick === 23 || pick === 33 || pick === 43 || pick === 53){
+      return {
+        name: name,
+        team: team,
+        description: "New Draftee",
+        pick: `${pick}rd Pick`,
+        position: "Unknown",
+        imgUrl: "https://via.placeholder.com/150",
+        link: "#"
+      };
+    }
+    else {
+      return {
+        name: name,
+        team: team,
+        description: "New Draftee",
+        pick: `${pick}th Pick`,
+        position: "Unknown",
+        imgUrl: "https://via.placeholder.com/150",
+        link: "#"
+      };
+    }
+  }
+  
+    // Split the CSV data into lines
+    const lines = csvData.trim().split('\n');
+    
+    // Initialize pick counter
+    let pickCounter = 1;
+  
+    // Process each line
+    lines.forEach(line => {
+      const [team, player] = line.split(',');
+      const playerKey = player.toLowerCase().replace(/ /g, '');
+      players[playerKey] = createNewPlayer(player, team, pickCounter);
+      pickCounter++;
+    });
+  
     function createPlayerCard(player) {
       return `
         <div class="card-grid-space">
@@ -299,22 +387,22 @@
         </div>
       `;
     }
-
-
-
+  
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.querySelector('#card-container');
       let cardsHtml = '';
-
+  
       for (const key in players) {
         if (players.hasOwnProperty(key)) {
           cardsHtml += createPlayerCard(players[key]);
         }
       }
-
+  
       container.innerHTML = cardsHtml;
     });
   </script>
+  
+  
 </body>
 </html>
 
