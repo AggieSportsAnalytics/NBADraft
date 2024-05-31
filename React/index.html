@@ -115,11 +115,34 @@
     }
 
     .card-back {
-      background-color: var(--color);
-      transform: rotateY(180deg);
-      justify-content: center;
-      align-items: center;
-      color: white;
+        background-color: var(--color);
+        background-image: url("https://publish.one37pm.net/wp-content/uploads/2022/03/NBAMobile.png");
+        background-size: contain; /* or cover */
+        background-repeat: no-repeat; /* Ensures the image does not repeat */
+        background-position: center; /* Centers the image within the element */
+        transform: rotateY(180deg);
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 255, 255);
+        display: flex;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 0 5em -1em black;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        perspective: 1000px;
+      }
+
+      .card-back::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      border-radius: 1em;
     }
 
     .card h1 {
@@ -529,7 +552,9 @@
         </div>
           <div class="card-back">
             <h1>${player}</h1>
+            <div class="tags">
             <h2>Stats:</h2>
+            </div>
             <p>Points: ${stats.Pts}</p>
             <p>Rebounds: ${stats.Reb}</p>
             <p>Assists: ${stats.Ast}</p>
@@ -559,7 +584,7 @@ const playersArray = parseCSV(csvData);
 
 
 
-  
+
   </script>
 </body>
 </html>
