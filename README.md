@@ -1,8 +1,8 @@
 ## 🏀 You're Number One NBA Drafting Agent, so YOU won't make any mistakes again
 
-Every year the NBA holds thier draft where prospects from all over the world compete amongest themselves to get drafted into the NBA and have a shot of becoming an NBA Player. As daunting it is for the players to get drafted and work hard, it is also VERY hard to make the right pick for an NBA Team. There is always a stigma every year surronding draft busts and how these prospects end up turning into the players that they weren't envoisned to be. Our project aims to take out all the outside nosie and bais revolved around these players and make sure that teams, agents and people in the basketball world know HOW TO MAKE THE RIGHT PICK. 
+Every year the NBA holds its draft where prospects from all over the world compete among themselves to get drafted into the NBA and have a shot at becoming an NBA Player. As daunting as it is for the players to get drafted and work hard, it is also VERY hard to make the right pick for an NBA Team. There is always a stigma every year surrounding draft busts and how these prospects end up turning into the players that they weren't envisioned to be. Our project aims to take out all the outside noise and bais revolved around these players and make sure that teams, agents, and people in the basketball world know HOW TO MAKE THE RIGHT PICK. 
 
-NBA 2k25 Draft Analyzer: You're Number One Draft Agent is an web application aimed to help you make the right pick for the 2025 NBA Draft. Based on metrics such as how well a player preforms, what specific league they are in and what team in looking for coming into the draft, this web application takes all that information and creates a draft board on how the draft should play out. Using Machine Learning and Sentiment Analysis on players and NBA Teams, this application is ready to take youre drafting skills to the next well. Built through Python and it various libraries such as pandas, sklearn, seaborn and frontend development with react.js. 
+NBA 2k25 Draft Analyzer: You're Number One Draft Agent is a web application aimed to help you make the right pick for the 2025 NBA Draft. Based on metrics such as how well a player performs, what specific league they are in, and what team is looking for coming into the draft, this web application takes all that information and creates a draft board on how the draft should play out. Using Machine Learning and Sentiment Analysis on players and NBA Teams, this application is ready to take youre drafting skills to the next well. Built through Python and it various libraries such as pandas, sklearn, seaborn, and frontend development with react.js. 
 
 
 
@@ -11,32 +11,32 @@ NBA 2k25 Draft Analyzer: You're Number One Draft Agent is an web application aim
 ## 🥇 Key Features 
 
 ## Webscrapping 
-Through webscrapping we were able to get the data needed in order to make the right calls for where the player should land in the draft. By getting the players stats and how they preformed pre-draft and also getting previous draft results, we were able to use this information to help us create a machine learning model that can make an accruate prediction of the draft order and where each player should land 
+Through web scrapping, we were able to get the data needed to make the right calls for where the player should land in the draft. By getting the players' stats and how they performed pre-draft and also getting previous draft results, we were able to use this information to help us create a machine learning model that can make an accurate prediction of the draft order and where each player should land 
 
 <br></br>
 <img width="990" alt="image" src="https://github.com/AggieSportsAnalytics/NBADraft/blob/main/React/src/images/webscrapping.png">
 
 ## Sentiment Analysis 
-By using ESPN Articles and researching around the NBA Draft, we were able to quantify words and through sentiment analysis, we were able to understand what each team was looking for coming into the NBA Draft and how they would approach the draft. By using previous years as a training model, we were able to understand how to match up the words of what the team wanted and see hoe they actually drafted and through this, we were able to understand how each team would draft. 
+By using ESPN Articles and researching the NBA Draft, we were able to quantify words and through sentiment analysis, we were able to understand what each team was looking for coming into the NBA Draft and how they would approach the draft. By using previous years as a training model, we were able to understand how to match up the words of what the team wanted and see hoe they drafted and through this, we were able to understand how each team would draft. 
 
 <br></br>
 <img width="990" alt="image" src="https://github.com/AggieSportsAnalytics/NBADraft/blob/main/React/src/images/sentimentAnalysis.png">
 
 ## Machine Learning: Naive Bayes 
-When thinking of which specific model to use, we decided to use Naive Bayes as this is commonly used in recommendation systems and widely used for its efficiency and accuracy. The Selected Features that we used for each player was thier performance stats, player position, league. We then used the ML model to predict which “team need” category each player best fits in to as each team had a specific need coming into the draft. Through this, we matched players to teams based on their needs using the 2024 draft order.
+When thinking of which specific model to use, we decided to use Naive Bayes as this is commonly used in recommendation systems and widely used for its efficiency and accuracy. The Selected Features that we used for each player was their performance stats, player position, and league. We then used the ML model to predict which “team need” category each player best fits into as each team had a specific need coming into the draft. Through this, we matched players to teams based on their needs using the 2024 draft order.
 
 <br></br>
 <img width="990" alt="image" src="https://github.com/AggieSportsAnalytics/NBADraft/blob/main/React/src/images/naiveBayes.png">
 
 ## Frontend: React.js 
-By using react.js and figma, we were able to come uop witha comprehensive user-friendly web application in where each player had thier own player card and through creating a hashmap, we were able to connect the backend csv file into the frontend with all of the players information an d hwere they would land in the draft. Using react.js allowed us to connect the frontend and backend seamlessly and be able to have full freedom in having a nice creative frontend that was engaing and useable. 
+By using react.js and Figma, we were able to come up with a comprehensive user-friendly web application in which each player had their player card, and through creating a hashmap, we were able to connect the backend CSV file into the frontend with all of the players' information and where they would land in the draft. Using react.js allowed us to connect the frontend and backend seamlessly and be able to have full freedom in having a nice creative frontend that was engaging and useable. 
 
 <br></br>
 <img width="990" alt="image" src="https://github.com/AggieSportsAnalytics/NBADraft/blob/main/React/src/images/reactjs.png">
 <br></br>
 
 ## 📁 Code
-When obtaining the NBA draft data fort all of the prospects for this upcoming draft, we used the draft express wesbite and parsed through their table in where they had all the information about the players in the draft and thier stats
+When obtaining the NBA draft data for all of the prospects for this upcoming draft, we used the draft express website and parsed through their table in which they had all the information about the players in the draft and their stats
 ```py
 url = 'https://www.draftexpress.com/rankings/Top-100-Prospects/printable'
 page = requests.get(url)
@@ -47,7 +47,7 @@ print(world_table_titles)
 df = pd.DataFrame(columns = world_table_titles)
 ...
 ```
-After creating an Empty dataframe with all of the headers from the Table given to us that we parsed through, we have to go through each table row and update it with the information that pertains to each player. We did this for the top 100 prospects in the NBA draft for this year. We also did the same thing for the previous draft so we can have the previous draft rersults as well
+After creating an Empty dataframe with all of the headers from the Table given to us that we parsed through, we have to go through each table row and update it with the information that pertains to each player. We did this for the top 100 prospects in the NBA draft for this year. We also did the same thing for the previous draft so we can have the previous draft results as well
 ```py
 df = df.drop(columns=['Stats', 'Situation'])
 # Define the name of the new column
@@ -65,7 +65,7 @@ for row in column_data:
     df.loc[length] = individual_row_data 
 ...
 ```
-After getting the CSV data for both the NBA top 100 prospects and getting the sentiment analysis around what each team is looking for coming into the NBA draft, we ran a Naive Bayes Machine Learning model in where we were able to break down individually all of the different measurements and statisitcs for each player and basedd on these stats, we were able to group it to categorize what type of player the prospect is and then match this to what the team is looking for:
+After getting the CSV data for both the NBA top 100 prospects and getting the sentiment analysis around what each team is looking for coming into the NBA draft, we ran a Naive Bayes Machine Learning model in which we were able to break down individually all of the different measurements and statistics for each player and based on these stats, we were able to group it to categorize what type of player the prospect is and then match this to what the team is looking for:
 ```py
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
@@ -131,7 +131,7 @@ final_results_with_predictions = prospects2024[['Player', 'Pos', 'Predicted_Team
 ...
 ```
 
-For our frontend, we created a hashmap in where we were able to convert the csv file with all of the prospects ito individual player cards for each player and make them visible on our web application 
+For our frontend, we created a hashmap in which we were able to convert the CSV file with all of the prospects into individual player cards for each player and make them visible on our web application 
 ```javascript
    let pickCounter = 1;
 
@@ -204,12 +204,12 @@ const playersArray = parseCSV(csvData);
     );
   });
 ```
-Through this hashmap, we were able to connect the backend and frontend together to make sure that our web application has all the draft picks in the right order with thier stats, position, and where they would land (specifically to what team they would get drafted by) and a picture for each player
+Through this hashmap, we were able to connect the backend and frontend to make sure that our web application has all the draft picks in the right order with their stats, position, and where they would land (specifically to what team they would get drafted by) and a picture for each player
 
 ## 🖱️ Future areas of improvement 
-* We want to account for last minute draft changes, such as wether or not someone drops out of the draft or if a team makes a trade. In a future update for this application we would want to have live updates and then make changes asynchronously in the background so it shows our users the right NBA Draft predicition
-* We also want to make a additional feature in which when you click on each player card, it will show the news and "Buzz" around a specific player. Through using twitter sentiment analysis and extracting tweets on each player, this would enable users toi get insight about each specific player and get more of an understanding on what people think about a specific player
-* An additional feature that we want in an upcoming update would be for users to add thier own custom player to see based on our model for a specific year, where they would land in the draft. Creating custom drafts based on whatever the user inputs.
+* We want to account for last-minute draft changes, such as whether or not someone drops out of the draft or if a team makes a trade. In a future update for this application, we would want to have live updates and then make changes asynchronously in the background so it shows our users the right NBA Draft prediction
+* We also want to make an additional feature in which when you click on each player card, it will show the news and "Buzz" around a specific player. Using twitter sentiment analysis and extracting tweets on each player, would enable users to get insight about each specific player and get more of an understanding of what people think about a specific player
+* An additional feature that we want in an upcoming update would be for users to add their custom player to see based on our model for a specific year, where they would land in the draft. Creating custom drafts based on whatever the user inputs.
 
 ## 🖥️ Technology 
 ⭐ Python <br>
